@@ -1,0 +1,35 @@
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, Helevetica, sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ newsletter.title }}</h1>
+
+    {% if items.articles| length > 0 %}
+        <h2>Read our new articles</h2>
+        {% for article in items.articles %}
+        <h3><a href="{{ url('app_blog_article', {id: article.id}) }}">{{ article.title }}</a></h3>
+        {% endfor %}
+    {% endif %}
+
+    {% if items.courses| length > 0 %}
+        <h2>Check our new and updated courses</h2>
+        {% for course in items.courses %}
+        <h3><a href="{{ url('app_course_details', {courseId: course.id}) }}">{{ course.name }}</a></h3>
+        {% endfor %}
+    {% endif %}
+
+    {% if items.teachers | length > 0 %}
+    <h2>Check our new and updated instructors</h2>
+        {% for teacher in items.teachers %}
+        <h3><a href="{{ url('app_teacher_details', {id: teacher.id}) }}">{{ teacher.name }}</a></h3>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

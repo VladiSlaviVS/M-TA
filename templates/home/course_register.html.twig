@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="card mt-5">
+        <div class="card-body">
+            <p>
+                Successfully registered {{ app.user.email }} in course {{ course.name }}
+            </p>
+
+            <p>
+                You will be enrolled in {{ course.name  }} after you send wire transfer of &pound;{{ course.price }}
+                to one of the following bank accounts
+            </p>
+            {% for contact in contacts %}
+                <table class="table">
+                    <tr>
+                        <th>Payee full name</th>
+                        <td>{{ contact.payeeName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Sort code</th>
+                        <td>{{ contact.sortCode }}</td>
+                    </tr>
+                    <tr>
+                        <th>Account number</th>
+                        <td>{{ contact.accountNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th>Reference</th>
+                        <td>COURSE-{{ course.id }}</td>
+                    </tr>
+                </table>
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+{% endblock %}

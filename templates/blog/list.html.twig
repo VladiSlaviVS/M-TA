@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="d-flex" style="margin-top: 0.5rem;">
+        <div class="flex-shrink-1 flex-grow-0">
+            <ul class="nav flex-column nav-pills">
+                {% for category in categories %}
+                    <li class="nav-item">
+                        {% if  category.getId() is same as(currentCategory) %}
+                        <a href="{{ path('app_blog', {categoryId: category.getId()}) }}"
+                            class="nav-link active">
+                            {{ category.getName() }}
+                        </a>
+                        {% else %}
+                            <a href="{{ path('app_blog', {categoryId: category.getId()}) }}"
+                               class="nav-link">
+                                {{ category.getName() }}
+                            </a>
+                        {% endif %}
+                    </li>
+                {% else %}
+                    <li class="nav-item">No article categories</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        <div class="flex-shrink-0 flex-grow-1">
+            {% for article in articles %}
+                <div class="card" style="margin-top: 0.5rem;">
+                    <div class="card-header">
+                        <a href="{{ path('app_blog_article', {id: article.getId()}) }}">
+                            {{ article.getTitle() }}
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        {{ article.getSummary() | raw }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}

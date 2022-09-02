@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="teachers-container">
+        {% for teacher in teachers %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="d-flex flex-row">
+                        <div class="flex-grow-0">
+                            <img src="{{ asset('images/teachers/' ~ teacher.image) }}"
+                                 alt="" height="200">
+                        </div>
+                        <div class="flex-grow-1 p-2">
+                            <p>
+                                <a href="{{ path('app_teacher_details', {id: teacher.id}) }}">
+                                    {{ teacher.name }}
+                                </a>
+
+                            </p>
+                            <p>
+                                {{ teacher.description }}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {% else %}
+            <div>
+                <p class="text-center fw-bold">
+                    <em>No listed teachers yet<em>
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'profile/index.html.twig' %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            My Details
+        </div>
+        <div class="card-body">
+            Email: {{ app.user.email }}
+        </div>
+    </div>
+{% endblock %}

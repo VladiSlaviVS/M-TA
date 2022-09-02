@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+    {% set currentRoute = app.request.attributes.get('_route') %}
+    {% if 'ROLE_TEACHER' in app.user.roles %}
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            {% if currentRoute == 'app_profile'%}
+                <a href="{{ path('app_profile') }}" class="nav-link active">Details</a>
+            {% else %}
+                <a href="{{ path('app_profile') }}" class="nav-link">Details</a>
+            {% endif %}
+        </li>
+        <li class="nav-item">
+            {% if currentRoute == 'app_profile_students'%}
+                <a href="{{ path('app_profile_students') }}" class="nav-link active">Students</a>
+            {% else %}
+                <a href="{{ path('app_profile_students') }}" class="nav-link">Students</a>
+            {% endif %}
+        </li>
+    </ul>
+    {% else %}
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                {% if currentRoute == 'app_profile'%}
+                    <a href="{{ path('app_profile') }}" class="nav-link active">Details</a>
+                {% else %}
+                    <a href="{{ path('app_profile') }}" class="nav-link">Details</a>
+                {% endif %}
+            </li>
+            <li class="nav-item">
+                {% if currentRoute == 'app_profile_courses'%}
+                    <a href="{{ path('app_profile_courses') }}" class="nav-link active">My Courses</a>
+                {% else %}
+                    <a href="{{ path('app_profile_courses') }}" class="nav-link">My Courses</a>
+                {% endif %}
+            </li>
+            <li class="nav-item">
+                {% if currentRoute == 'app_profile_articles'%}
+                    <a href="{{ path('app_profile_articles') }}" class="nav-link active">My Articles</a>
+                {% else %}
+                    <a href="{{ path('app_profile_articles') }}" class="nav-link">My Articles</a>
+                {% endif %}
+            </li>
+        </ul>
+    {% endif %}
+    <div class="mt-3">
+        {% block content %}{% endblock %}
+    </div>
+
+{% endblock %}

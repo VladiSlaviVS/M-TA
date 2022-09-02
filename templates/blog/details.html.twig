@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="d-flex justify-content-end">
+        <a href="{{ path('app_blog_mark_read', {id: article.id}) }}" class="btn btn-primary">Mark as read</a>
+    </div>
+    <h1>{{ article.getTitle() }}</h1>
+    <div>
+        {{ article.getText() | raw}}
+    </div>
+{% endblock %}
